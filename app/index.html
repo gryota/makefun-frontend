@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A fast, lean, open-source make.fun frontend: live bounty board, bounty pages, leaderboards and profiles. Static files, no build step, no framework.">
+<title>make.fun bounties — live board, leaderboards, profiles</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header class="top">
+  <a class="brand" href="#/"><span class="brand-mark" aria-hidden="true">◆</span> make.fun <span class="brand-sub">bounties</span></a>
+  <nav aria-label="Main">
+    <a href="#/">Board</a>
+    <a href="https://make.fun/" target="_blank" rel="noopener">make.fun ↗</a>
+  </nav>
+</header>
+<main id="app" aria-live="polite"></main>
+<footer class="foot">
+  <p>Unofficial client. Data: <a href="https://make.fun/api/openapi.json">make.fun public API</a> · read-only, no sign-in. <a href="https://github.com/gryota/makefun-frontend">Source on GitHub</a></p>
+</footer>
+</body>
+</html>
