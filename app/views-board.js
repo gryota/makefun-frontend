@@ -115,8 +115,9 @@ export function board(data) {
 export function boardList(data, state) {
   const items = data.items ?? [];
   const pool = state.showEnded ? items : items.filter(isOpen);
+  const filter = FILTERS[state.filter] ?? FILTERS.all;
   const shown = pool
-    .filter((b) => FILTERS[state.filter](b))
+    .filter((b) => filter(b))
     .filter((b) => matches(b, state.q))
     .sort(SORTS[state.sort]);
   const list = document.getElementById('board-list');

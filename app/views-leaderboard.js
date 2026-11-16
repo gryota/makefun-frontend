@@ -8,7 +8,8 @@ export const PAGE_SIZE = 25;
 
 function avatar(e) {
   if (!e.image) return '';
-  return `<img class="avatar" src="https://make.fun${esc(e.image)}" alt="" loading="lazy" crossorigin="anonymous">`;
+  const src = /^https?:\/\//.test(e.image) ? e.image : `https://make.fun${e.image}`;
+  return `<img class="avatar" src="${esc(src)}" alt="" loading="lazy" crossorigin="anonymous">`;
 }
 
 function row(e) {

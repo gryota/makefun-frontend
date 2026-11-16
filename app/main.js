@@ -157,7 +157,7 @@ async function renderProfile(handle) {
 }
 
 function render() {
-  const hash = location.hash || '#/';
+  const hash = (location.hash || '#/').replace(/\/$/, '') || '#/';
   const lb = hash.match(/^#\/bounty\/([^/]+)\/leaderboard$/);
   const bp = hash.match(/^#\/bounty\/([^/]+)$/);
   const up = hash.match(/^#\/user\/([^/]+)$/);

@@ -28,10 +28,16 @@ export function profile(p) {
   const payouts = p.payouts ?? [];
   const wallet = p.wallet ?? {};
   const x = p.x ?? {};
+  const avatarSrc = p.image ? (/^https?:\/\//.test(p.image) ? p.image : `https://make.fun${p.image}`) : '';
+  const walletLink = wallet.address
+    ? wallet.explorer_url
+      ? `<a href="${esc(wallet.explorer_url)}">Wallet: ${esc(shortAddr(wallet.address))}</a>`
+      : `<span>Wallet: ${esc(shortAddr(wallet.address))}</span>`
+    : '';
   return `
   <p><a class="back" href="#/">← All bounties</a></p>
   <div class="profile-head">
-    ${p.image ? `<img class="avatar-lg" src="https://make.fun${esc(p.image)}" alt="" crossorigin="anonymous">` : ''}
+    ${avatarSrc ? `<img class="avatar-lg" src="${esc(avatarSrc)}" alt="" crossorigin="anonymous">` : ''}
     <div>
       <h1>${esc(p.display_name ?? p.handle)}</h1>
       <div class="handle">@${esc(p.handle)}</div>
@@ -42,7 +48,7 @@ export function profile(p) {
   <div class="linklist">
     ${p.github_login ? `<a href="https://github.com/${encodeURIComponent(p.github_login)}">GitHub: ${esc(p.github_login)}</a>` : ''}
     ${x.username ? `<a href="${esc(x.url ?? `https://x.com/${x.username}`)}">X: @${esc(x.username)}</a>` : ''}
-    ${wallet.address ? `<a href="${esc(wallet.explorer_url ?? '')}">Wallet: ${esc(shortAddr(wallet.address))}</a>` : ''}
+    ${walletLink}
     ${p.discord ? `<span>Discord: ${esc(p.discord)}</span>` : ''}
   </div>
   <div class="stats" role="group" aria-label="Record">

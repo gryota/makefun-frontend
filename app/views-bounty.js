@@ -103,7 +103,9 @@ function rewardsTable(b) {
     <p class="lede" style="font-size:14px">Totals grow as entry fees come in; the split is set by the bounty.</p>`;
   }
   const rewards = b.rewards ?? {};
-  const places = Object.keys(rewards).sort((a, c) => Number(a) - Number(c));
+  // Place keys are usually plain numbers, but a range like "4-10" parses to
+  // NaN — sort by the leading number so ranges still land in order.
+  const places = Object.keys(rewards).sort((a, c) => (parseInt(a, 10) || 0) - (parseInt(c, 10) || 0));
   if (!places.length) return '<p class="empty">No rewards table published for this bounty yet.</p>';
   const rows = places
     .map((p) => `<tr><td>${esc(p)}</td><td class="num"><b>${money(rewards[p])}</b></td></tr>`)

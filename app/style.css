@@ -99,6 +99,8 @@ button.linklike:hover { text-decoration: underline; }
   padding: 18px; display: flex; flex-direction: column; gap: 10px;
 }
 .card:hover { border-color: #cfc6f5; }
+.card:focus-within { border-color: #cfc6f5; }
+img { max-width: 100%; }
 .card h3 a { color: var(--ink); }
 .card h3 a:hover { color: var(--accent); }
 .card .pot { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }

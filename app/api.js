@@ -53,10 +53,7 @@ async function fetchJSON(path) {
     }
     clearTimeout(timer);
     if (res.status === 304 && cached) {
-      cached.at = Date.now();
-      try {
-        sessionStorage.setItem(key, JSON.stringify(cached));
-      } catch {}
+      store(path, key, cached.etag, cached.data); // revalidation: refresh the timestamp
       return cached.data;
     }
     if (!res.ok) {
